@@ -11,7 +11,7 @@ cost regions. Using a convenient cost function, which models the problem’s cri
 RRT algorithm we get paths which fulfill the stated criterion while the RRT algorithm, in the general
 case, is not able to carry out such a task. An example of a criterion which we are going to use is the
 requirement for the tip of the manipulator to be at the furthest possible distance from the obstacles
-in the working space which ensures its safety.
+in the working space which ensures its safety.  
 The parameters which are integrated inside the T-RRT algorithm influence its performance and the
 final shape of the path so a great number of simulations was conducted, with various types of robot
 manipulators, to analyze the influence of individual parameters on the path. These examples were
