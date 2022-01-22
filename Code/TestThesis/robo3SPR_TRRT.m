@@ -55,7 +55,7 @@ close all;
 mi = [0.25, 0.15];
 eta = 0.2;
 [G, Ga, Gb, con] = myRoboBiRRT(robot, G1, G2, q_init, q_final, pltRRT, eta, mi);
-return;
+%return;
 % open('2SPR_CS.fig');
 % hold on;
 % Ga.plotRRT(1,1, 'k');

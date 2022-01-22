@@ -26,7 +26,7 @@ minDistance = 1; % minimalna dopustena distanca do cilja
 % ylim([-180, 180]);
 % zlim([-180, 180]);
 
-pltRRT = 0; 
+pltRRT = 1; 
 
 deltaQ = 10; % za koliko se siri stablo
 
