@@ -13,8 +13,8 @@ function [G1, Ga, Gb, con, i] = myRoboBiRRT(robot, G1, G2, q_init, q_final, plot
     end
         
     i = 0; % 
-    k1 = 2; % Brojac cvorova za G1
-    k2 = 2; % Brojac cvorova za G2
+    k1 = 2; % Node counter for G1
+    k2 = 2; % Node counter for G2
     q_new2 = q_final;    
     
     a = tic;
@@ -45,17 +45,15 @@ function [G1, Ga, Gb, con, i] = myRoboBiRRT(robot, G1, G2, q_init, q_final, plot
                 robot.currConfig = toRad(q_new1.coordinates');
                 condition = ~checkRoboIntersection(robot);
             end
-
-            % provjera da li je tacka van prepreke
+            % check if the point is outside the obstacle
             if condition
 %                 b = toc(a);
 %                 plot(k1,b,'bx');
 %                 hold on;
                 q_last1 = q_new1;
-                G1.addNode(q_new1); % dodavanje novog cvora grafu
-                G1.addEdge(q_near1, q_new1); % dodavanje nove grane grafu
-
-                % plotanje
+                G1.addNode(q_new1); % add new node to the graph 
+                G1.addEdge(q_near1, q_new1); % add new edge to the graph
+                % plotting
                 if plotGraph
                     plotEdge(q_near1, q_new1, 'r',1.5);
                     plotNode(q_new1, 'b.', 8);
@@ -95,11 +93,11 @@ function [G1, Ga, Gb, con, i] = myRoboBiRRT(robot, G1, G2, q_init, q_final, plot
                 robot.currConfig = toRad(q_new2.coordinates');
                 condition = ~checkRoboIntersection(robot);
             end
-            % provjera da li je tacka van prepreke
+            % check if the point is outside the obstacle
             if condition
 
-                G2.addNode(q_new2); % dodavanje novog cvora grafu
-                G2.addEdge(q_near2, q_new2); % dodavanje nove grane grafu
+                G2.addNode(q_new2); % add new node to the graph
+                G2.addEdge(q_near2, q_new2); % add new edge to the graph
 
                 % plotanje
                 if plotGraph
@@ -114,21 +112,21 @@ function [G1, Ga, Gb, con, i] = myRoboBiRRT(robot, G1, G2, q_init, q_final, plot
             end
         end
         
-        % Pokusaj povezivanja
+        % Try to connect
         q_try = G2.nearestNode(q_last1);
-        % Direktno spajanje ako nema prepreka
+        % Try to merge directly if there are no obstacles
         if (distance(q_last1.coordinates, q_try.coordinates) < 10 && ~checkRoboMove(robot, toRad(q_last1.coordinates)', toRad(q_try.coordinates)', 15)) 
             Ga = copy(G1);
             Gb = copy(G2);
             G1.mergeRRTs(G2, q_last1, q_try);
             con = [q_last1; q_try];
-            display(['Pronadjeno rjesenje! (Dvosmjerni myBi', class(G1), ').', sprintf('\n'), 'Broj potrebnih iteracija: ', ...
-                num2str(i),sprintf('\n'), 'Broj cvorova grafa: ', num2str(G1.getNodeNum), sprintf('\n'), 'Odnos grafova: ', num2str(1-G2.getNodeNum/G1.getNodeNum),'.']);
+            display(['Solution found! (Bidirectional myBi', class(G1), ').', sprintf('\n'), 'Number of iterations: ', ...
+                num2str(i),sprintf('\n'), 'Number of nodes in graph: ', num2str(G1.getNodeNum), sprintf('\n'), 'Graph ratio: ', num2str(1-G2.getNodeNum/G1.getNodeNum),'.']);
             return;
         end
 
     end
-    display('Nije pronadjeno rjesenje za uneseni cilj!');
+    display('Solution not found for entered goal!');
 
 end
 

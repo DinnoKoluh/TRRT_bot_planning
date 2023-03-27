@@ -1,6 +1,6 @@
 function [exObstacles] = expandObstacles(obstacles, ex)
-    % A function which stretches the obstacles in all directions by the sam
-    % amount
+    % A function which stretches the obstacles in all directions by the
+    % same amount
     num = length(obstacles);
     exObstacles = obstacles;
     for i = 1:num

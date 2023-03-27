@@ -3,7 +3,7 @@ close all;
 rng(13);
 t1 = tic;
 
-maxNodeNum = 20000; % maksimalan broj iteracije (cvorova)
+maxNodeNum = 20000; % max number of nodes
 
 boundary.begin = [-20, -20]; % the begining of the configuration space
 boundary.end = [20, 20]; % the end of the configuration space
