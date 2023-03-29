@@ -10,7 +10,7 @@ classdef Robot
         configVector = double.empty();
         obstacles = {};
         configObstacles = {};
-        options = optimoptions(@lsqlin,'Algorithm','active-set','Display','off');
+        options = optimoptions(@lsqlin,'Algorithm','interior-point','Display','off');
     end
     
     methods
@@ -56,7 +56,7 @@ classdef Robot
             end
         end
         
-        % A functions which retuturns the transformation matrix
+        % A function which returns the transformation matrix
         function T = getNthTransMatrix(obj, n)
             T = eye(4);
             DH = obj.getDHparameters();
@@ -73,7 +73,7 @@ classdef Robot
             end
         end
         
-        % A functions which returns the position of the n-th segment of a
+        % A function which returns the position of the n-th segment of a
         % planar arm
         function [position] = getNthSegmentPosition(obj,n)
             T = obj.getNthTransMatrix(n);
@@ -164,7 +164,7 @@ classdef Robot
             end
         end
         
-        % Functions which plots the trajectory of the n-th segment of the
+        % Function which plots the trajectory of the n-th segment of the
         % robot
         function plotRoboNthSegmentPath(obj, n)
             hold on;

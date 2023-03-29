@@ -36,15 +36,16 @@ pltRRT = 0;
 deltaQ = 10; % za koliko se siri stablo
 
 rng(6);
-% Karakteristike TRRT-a
+% TRRT characteristics
 T = 1e-6;
 K = 1000;
 alpha = 1.2;
 maxFails = 5;
 c_max = 0.85;
 rho = 0.15;
+terrain = false;
 
-% Inicijalizacija grafova
+% Graph initialization
 G1 = TRRT(maxNodeNum, boundary, deltaQ, minDistance); 
 G1.setTRRTproperties(terrain, T, K, alpha, maxFails, c_max, rho);
 
@@ -59,7 +60,8 @@ mi = [0.50, 0.30];
 eta = 0.10;
 [G, Ga, Gb, con] = myRoboBiRRT(robot, G1, G2, q_init, q_final, pltRRT, eta, mi);
 
-% Dobivanje vektora svih konfiguracija od po?etne do krajnje
+% Getting the vector of all the configuration from the initial to the final
+% one
 robot.configVector = robot.getMotionConfigVector(G, q_init, q_final);
 
 figure;

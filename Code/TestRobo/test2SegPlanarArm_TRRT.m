@@ -36,6 +36,7 @@ alpha = 1.25;
 maxFails = 20;
 c_max = 0.35;
 rho = 0.05;
+terrain = false;
 
 G1 = TRRT(maxNodeNum, boundary, deltaQ, minDistance); % inicijalizacija grafa
 G1.setTRRTproperties(terrain, T, K, alpha, maxFails, c_max, rho);
@@ -54,7 +55,7 @@ mi = [0.3, 0.3];
 eta = 0.2;
 [G] = myRoboBiRRT(robot, G1, G2, q_init, q_final, pltRRT, eta, mi);
 
-% Dobivanje vektora svih konfiguracija od pocetne do krajnje
+% Getting the configuration vector from the initial to the final one
 robot.configVector = robot.getMotionConfigVector(G, q_init, q_final);
 
 

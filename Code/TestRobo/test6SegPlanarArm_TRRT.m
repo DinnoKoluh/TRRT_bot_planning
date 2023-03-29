@@ -37,6 +37,7 @@ alpha = 1.25;
 maxFails = 20;
 c_max = 0.55;
 rho = 0.05;
+terrain = false;
 
 G1 = TRRT(maxNodeNum, boundary, deltaQ, minDistance); % inicijalizacija grafa
 G1.setTRRTproperties(terrain, T, K, alpha, maxFails, c_max, rho);

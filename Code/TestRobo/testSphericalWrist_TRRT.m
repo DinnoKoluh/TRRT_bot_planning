@@ -44,6 +44,7 @@ alpha = 4.19;
 maxFails = 18;
 c_max = 0.75;
 rho = 0.05;
+terrain = false;
 
 % Inicijalizacija grafova
 G1 = TRRT(maxNodeNum, boundary, deltaQ, minDistance); 

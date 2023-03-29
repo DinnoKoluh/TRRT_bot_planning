@@ -9,7 +9,7 @@ finalConfig = toRad([qf; 0]);
 
 robot = PlanarArm(L,initConfig, finalConfig);
 
-obstacles = makeRobo2Dobstacles();
+obstacles = make2Dobstacles();
 robot.obstacles = expandObstacles(obstacles, 0);
 
 maxNodeNum = 1500; % max broj cvorova
@@ -34,6 +34,8 @@ alpha = 1.25;
 maxFails = 20;
 c_max = 0.35;
 rho = 0.05;
+%terrain = makeTerrain(boundary, false);
+terrain = false;
 
 G1 = TRRT(maxNodeNum, boundary, deltaQ, minDistance); % inicijalizacija grafa
 G1.setTRRTproperties(terrain, T, K, alpha, maxFails, c_max, rho);
